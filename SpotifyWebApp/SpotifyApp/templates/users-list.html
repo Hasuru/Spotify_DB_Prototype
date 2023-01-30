@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Users{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table> 
+  <tr>
+    <th><b>Name</b></th>
+    <th><b>Sex</b></th>
+    <th><b>Email</b></th>
+    <th><b>BirthDate</b></th>
+    <th><b>Joined</b></th>
+   </tr>
+   
+  {% for u in users %}
+    <tr>
+      <td><a href="/users/{{ u.ULogin }}">{{ u.Name }}</a></td>
+      <td>{{ u.Sex }}</td>
+      <td>{{ u.Email }}</td>
+      <td>{{ u.BirthDate }}</td>
+      <td>{{ u.Joined }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+  <p>
+    <b>Ordered by User Name</b>
+  </p>
+{% endblock %}

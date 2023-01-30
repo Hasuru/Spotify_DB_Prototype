@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}{{ search.expr }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>Search results</h2>
+    <p> <ul>
+        {% for a in artists %}
+           <li><a href = "/artists/{{ a.ALogin }}">{{ a.Name }}</a></li>
+        {% endfor %}
+        </ul> 
+    </p>
+    <p>
+        <b>Ordered by Artist Name</b>
+    </p>
+{% endblock %}

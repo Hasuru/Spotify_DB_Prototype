@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}{{ artist.Name }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Artist info:</h2>
+  
+  <table> 
+  <tr>
+    <th><b>Login</b></th>
+    <th><b>Name</b></th>
+    <th><b>Verified</b></th>
+  </tr>
+   
+  <tr>
+    <td>{{ artist.ALogin }}</td>
+    <td>{{ artist.Name }}</td>
+    {% if artist.Verified == 1 %}
+      <td>Yes</td>
+    {% else %}
+      <td>No</td>
+    {% endif %}
+  </tr>
+  </table>
+
+  {% if albums %}
+  <p>
+      <h3>Albums created</h3>
+      <ul>
+        {% for al in albums %}
+          <li><a href="/albums/{{ al.AId }}">{{ al.Name }}</a></li>
+        {% endfor %}
+      </ul>
+  </p>
+  {% endif %}
+
+  {% if songs %}
+  <p>
+    <h3>Songs Created</h3>
+    <ul>
+      {% for s in songs %}
+        <li><a href="/songs/{{ s.SId }}">{{ s.Name }}</a></li>
+      {% endfor %}
+    </ul>
+  </p>
+  {% endif %}
+
+  {% if followers %}
+  <p>
+    <h3>Followed by</h3>
+    <ul>
+      {% for f in followers %}
+        <li><a href="/users/{{ f.ULogin }}"> {{ f.Name }}</a></li>
+      {% endfor %}
+    </ul>
+  </p>
+  {% endif %}
+
+{% endblock %}

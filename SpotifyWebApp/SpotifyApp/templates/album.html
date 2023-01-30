@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}{{ album.Name }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h2>Album info:</h2>
+
+<table> 
+    <tr>
+      <th><b>Id</b></th>
+      <th><b>Name</b></th>
+      <th><b>Creator</b></th>
+      <th><b>CreationDate</b></th>
+    </tr>
+     
+    <tr>
+      <td>{{ album.AId }}</td>
+      <td>{{ album.Name }}</td>
+      <td><a href="/artists/{{ artist.ALogin }}">{{ artist.Name }}</a></td>
+      <td>{{ album.CreationDate }}</td>
+    </tr>
+</table>
+
+<p>
+    <h3>Tracklist</h3>
+    <ul>
+        {% for s in songs %}
+            <li><a href="/songs/{{ s.SId }}">{{ s.Name }}</a></li>
+        {% endfor %}
+    </ul>
+</p>
+
+{% if users %}
+    <p>
+        <h3>Liked by Users</h3>
+        <ul>
+            {% for u in users %}
+                <li><a href="/users/{{ u.ULogin }}">{{ u.Name }}</a></li>
+            {% endfor %}
+        </ul>
+    </p>
+{% endif %}
+
+{% endblock %}

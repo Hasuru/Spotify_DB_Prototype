@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ genre.Label }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Genre info:</h2>
+  <table>
+    <tr>
+      <th><b>GenreId</b></th>
+      <th><b>Label</b></th>
+    </tr>
+    <tr>
+      <td>{{ genre.GId }}</td>
+      <td>{{ genre.Label }}</td>
+    </tr>
+  </table>
+  <p>
+    <h3>Songs:</h3>
+    <ul>
+      {% for s  in songs %}      
+        <li><a href="/songs/{{ s.SId }}">{{ s.Name }}</a></li>
+      {% endfor %}
+    </ul>
+  </p>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}{{ song.Name }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>Song info</h2>
+    <table> 
+        <tr>
+          <th><b>Id</b></th>
+          <th><b>Name</b></th>
+          <th><b>Creator</b></th>
+          <th><b>PostDate</b></th>
+        </tr>
+        <tr>
+            <td>{{ song.SId }}</td>
+            <td>{{ song.Name }}</td>
+            <td><a href="/artists/{{ artist.ALogin }}">{{ artist.Name }}</a></td>
+            <td>{{ song.PostDate }}</td>
+        </tr>
+    </table>
+    
+    {% if album %}
+    <p>
+        <h3>Belongs to Album</h3>
+        <ul>
+            <li><a href="/albums/{{ album.AId }}"> {{ album.Name }}</a></li>
+        </ul>
+    </p>
+    {% endif %}
+    
+    {% if playlists %}
+    <p>
+        <h3>Belongs to Playlists</h3>
+        {% for p in playlists %}
+            <ul>
+                <li><a href="/playlists/{{ p.PId }}">{{ p.Name }}</a></li>
+            </ul>
+        {% endfor %}
+    </p>
+    {% endif %}
+
+    {% if users %}
+    <p>
+        <h3>Liked by Users</h3>
+        <ul>
+            {% for u in users %}
+                <li><a href="/users/{{ u.ULogin }}">{{ u.Name }}</a></li>
+            {% endfor %}
+        </ul>
+    </p>
+    {% endif %}
+
+    <p>
+        <h3>Genres</h3>
+        {% for g in genres %}
+            <ul>
+                <li><a href="/genres/{{ g.GId }}">{{ g.Label }}</a></li>
+            </ul>
+        {% endfor %}
+    </p>
+{% endblock %}
+

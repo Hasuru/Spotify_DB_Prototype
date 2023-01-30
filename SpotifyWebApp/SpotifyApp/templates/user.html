@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}{{ user.Name }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>User info</h2>
+    <table> 
+        <tr>
+          <th><b>Login</b></th>
+          <th><b>Sex</b></th>
+          <th><b>Email</b></th>
+          <th><b>BirthDate</b></th>
+          <th><b>Joined</b></th>
+        </tr>
+        <tr>
+            <td>{{ user.ULogin }}</td>
+            <td>{{ user.Sex }}</td>
+            <td>{{ user.Email }}</td>
+            <td>{{ user.BirthDate }}</td>
+            <td>{{ user.Joined }}</td>
+        </tr>
+    </table>
+
+    {% if playlists %}
+        <p>
+            <h3>Playlists created</h3><ul>
+                {% for p in playlists %}
+                    <li><a href="/playlists/{{ p.PId }}">{{ p.Name }}</a></li>
+                {% endfor %}
+            </ul>
+        </p>
+    {% endif %}
+
+    {% if followers %}
+        <p>
+            <h3>Followed by</h3>
+            <ul>
+                {% for f in followers %}
+                    <li><a href="/users/{{ f.ULogin }}"> {{ f.Name }}</a></li>
+                {% endfor %}
+            </ul>
+        </p>
+    {% endif %}
+
+    {% if playlist_likes %}
+        <p>
+            <h3>Likes playlists</h3>
+            <ul>
+                {% for pl in playlist_likes %}
+                    <li><a href="/playlists/{{ pl.PId }}"> {{ pl.Name }}</a></li>
+                {% endfor %}
+            </ul>
+        </p>
+    {% endif %}
+
+    {% if album_likes %}
+        <p>
+            <h3>Likes Albums</h3>
+            <ul>
+                {% for al in album_likes %}
+                    <li><a href="/albums/{{ al.AId }}"> {{ al.Name }}</a></li>
+                {% endfor %}
+            </ul>
+        </p>
+    {% endif %}
+
+    {% if song_likes %}
+        <p>
+            <h3>Likes Songs</h3>
+            <ul>
+                {% for sl in song_likes %}
+                    <li><a href="/songs/{{ sl.SId }}"> {{ sl.Name }}</a></li>
+                {% endfor %}
+            </ul>
+        </p>
+    {% endif %}
+
+{% endblock %}

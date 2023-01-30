@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+<!-- Titulo --> 
+{% block header %}
+  <h1>{% block title %} Spotify-like database {% endblock %}</h1>
+{% endblock %}
+
+<!-- Alguma info antes das tabelas -->
+{% block content %}
+<h2>Done by</h2>
+<table>
+  <tr>
+    <th><b>Name</b></th>
+    <th><b>N_Mec</b></th>
+  </tr>
+  <tr>
+    <td>Hugo Silva</td>
+    <td>up202004447</td>
+  </tr>
+  <tr>
+    <td>João Malheiro</td>
+    <td>up202004449</td>
+  </tr>
+  <tr>
+    <td>Tomás Ferreira</td>
+    <td>up202006594</td>
+  </tr>
+</table>
+
+<h2>About</h2>
+
+<p>
+  Based on the well-known music streaming app 
+  <a href = "https://www.spotify.com/us/">Spotify</a>.
+</p>
+
+<!-- Tabelas -->
+<h2>Some Data we have</h2>
+<table>
+  <tr>
+    <th><b>Tables</b></th>
+    <th><b>Total</b></th>
+  </tr>
+  <tr>
+    <td>Users</td>
+    <td>{{ stats.users }}</td>
+  </tr>
+  <tr>
+    <td>Artists</td>
+    <td>{{ stats.artists }}</td>
+  </tr>
+  <tr>
+    <td>Songs</td>
+    <td>{{ stats.songs }}</td>
+  </tr>
+  <tr>
+    <td>Genres</td>
+    <td>{{ stats.genres }}</td>
+  </tr>
+</table>
+
+<!-- Pesquisadores -->
+<h1>Search Hub</h1>
+
+<h2>Users</h2>
+<p>
+  <a href="/users">List all</a>
+</p>
+<p>Get user info:
+  <form name = "uid" action="javascript:window.open('/users/'+document.forms['uid'].elements['id'].value,'_self')">
+    Login:<input value="14" name="id" type="number" min="1"/>
+          <input type="submit" value="get"/>
+  </form>
+</p>
+
+<p>Search by name:
+  <form name="usearch" action="javascript:window.open('/users/search/'+document.forms['usearch'].elements['expr'].value,'_self')">
+    <input name="expr" id="expr" value="Glacier" required/>
+    <input type="submit" value="search"/>
+  </form>
+  </p>
+
+<h2>Artists</h2>
+<p>
+  <a href="/artists">List all</a>
+</p>
+
+<p>Get artist info:
+  <form name = "aid" action="javascript:window.open('/artists/'+document.forms['aid'].elements['id'].value,'_self')">
+    Login:<input value="7" name="id" type="number" min="1"/>
+          <input type="submit" value="get"/>
+  </form>
+</p>
+<p>Search by name:
+  <form name="asearch" action="javascript:window.open('/artists/search/'+document.forms['asearch'].elements['expr'].value,'_self')">
+    <input name="expr" id="expr" value="Linkin Park" required/>
+    <input type="submit" value="search"/>
+  </form>
+</p>
+
+<h2>Songs</h2>
+<p>
+   <a href="/songs">List all</a>
+</p>
+<p>Get song info:
+<form name="sid" action="javascript:window.open('/songs/'+document.forms['sid'].elements['id'].value,'_self')">
+   Song Id:<input value="42" name="id" type="number" min="1"/><input type="submit" value="get"/>
+</form>
+</p>
+  
+<p>Search by name:
+<form name="ssearch" action="javascript:window.open('/songs/search/'+document.forms['ssearch'].elements['expr'].value,'_self')">
+  <input name="expr" id="expr" value="DNA" required/>
+  <input type="submit" value="search"/>
+</form>
+</p>
+
+
+<h2>Genres</h2>
+<p>
+   <a href="/genres">List all</a>
+</p>
+
+<p>Get genre info:
+<form name="gid" action="javascript:window.open('/genres/'+document.forms['gid'].elements['id'].value,'_self')">
+   Genre Id:<input value="3" name="id" type="number" min="1"/><input type="submit" value="get"/>
+</form>
+</p>
+<p>
+  Search by name:
+  <form name="gsearch" action="javascript:window.open('/genres/search/'+document.forms['gsearch'].elements['expr'].value,'_self')">
+    <input name="expr" id="expr" value="ROCK" required/>
+    <input type="submit" value="search"/>
+  </form>
+</p>
+
+{% endblock %}
